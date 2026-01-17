@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prathmesh Ambekar | Portfolio</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#0b0f1a;
+      --card:#11172a;
+      --primary:#00f5ff;
+      --secondary:#7c7cff;
+      --accent:#00ff9c;
+      --text:#eaeaff;
+    }
+
+    *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+    body{background:radial-gradient(circle at top,var(--bg),#05070d);color:var(--text)}
+
+    header{
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      position:relative;
+      overflow:hidden;
+    }
+
+    header h1{
+      font-size:3.2rem;
+      background:linear-gradient(90deg,var(--primary),var(--secondary));
+      -webkit-background-clip:text;
+      color:transparent;
+      animation:glow 3s infinite alternate;
+    }
+
+    header p{max-width:700px;margin-top:1rem;font-size:1.1rem;opacity:.9}
+
+    .badge{
+      margin-top:1.5rem;
+      padding:.5rem 1.2rem;
+      border:1px solid var(--accent);
+      border-radius:30px;
+      color:var(--accent);
+      box-shadow:0 0 15px rgba(0,255,156,.5);
+    }
+
+    @keyframes glow{
+      from{text-shadow:0 0 10px rgba(0,245,255,.4)}
+      to{text-shadow:0 0 25px rgba(124,124,255,.8)}
+    }
+
+    section{padding:4rem 8%}
+    h2{font-size:2.2rem;margin-bottom:2rem;color:var(--primary)}
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:2rem;
+    }
+
+    .card{
+      background:linear-gradient(145deg,var(--card),#0a0f20);
+      padding:2rem;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.05);
+      transition:.4s;
+      position:relative;
+    }
+
+    .card:hover{
+      transform:translateY(-8px) scale(1.02);
+      box-shadow:0 0 25px rgba(0,245,255,.3);
+    }
+
+    .card::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      border-radius:16px;
+      background:linear-gradient(120deg,transparent,var(--primary),transparent);
+      opacity:0;
+      transition:.4s;
+    }
+
+    .card:hover::after{opacity:.15}
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+      margin-top:1rem;
+    }
+
+    th,td{
+      padding:.8rem;
+      border-bottom:1px solid rgba(255,255,255,.1);
+      text-align:left;
+    }
+
+    th{color:var(--accent)}
+
+    .highlight{
+      color:var(--accent);
+      font-weight:600;
+    }
+
+    footer{
+      text-align:center;
+      padding:2rem;
+      background:#05070d;
+      font-size:.9rem;
+      opacity:.7;
+    }
+
+    /* Flashlight effect */
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      background:radial-gradient(circle at var(--x) var(--y),rgba(0,245,255,.12),transparent 40%);
+    }
+  </style>
+</head>
+
+<body>
+<header>
+  <h1>Prathmesh Ambekar</h1>
+  <p>Electronics & Telecommunication Engineer | Python • DevOps • Cloud • Embedded Systems</p>
+  <div class="badge">🚀 Student Portfolio</div>
+</header>
+
+<section>
+  <h2>About Me</h2>
+  <div class="card">
+    Highly motivated engineering student with hands-on experience in <span class="highlight">Python, Cloud, DevOps, and Embedded Systems</span>. I love building scalable systems, automating workflows, and integrating hardware with software.
+  </div>
+</section>
+
+<section>
+  <h2>Technical Skills</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>Cold Storage Monitoring (IoT)</h3>
+      <p>Real-time temperature & humidity monitoring with alert system.</p>
+    </div>
+    <div class="card">
+      <h3>Tomato Quality Detection</h3>
+      <p>Computer vision based defect classification using live webcam.</p>
+    </div>
+    <div class="card">
+      <h3>SEO & Web Optimization</h3>
+      <p>Improved performance of live rural agriculture website.</p>
+    </div>
+    <div class="card">
+      <h3>DevOps Learning Hub 🚀</h3>
+      <p>AI-powered interactive platform to learn DevOps concepts with dashboards, analytics, real-world examples, and hands-on guidance.</p>
+      <p><span class="highlight">Tech:</span> Python, Streamlit, Plotly, DevOps, AI</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Projects</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>Cold Storage Monitoring (IoT)</h3>
+      <p>Real-time temperature & humidity monitoring with alert system.</p>
+    </div>
+    <div class="card">
+      <h3>Tomato Quality Detection</h3>
+      <p>Computer vision based defect classification using live webcam.</p>
+    </div>
+    <div class="card">
+      <h3>SEO & Web Optimization</h3>
+      <p>Improved performance of live rural agriculture website.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Education Snapshot</h2>
+  <div class="card">
+    <table>
+      <tr><th>Degree</th><th>Institute</th><th>Score</th></tr>
+      <tr><td>B.Tech (ENTC)</td><td>PES MCOE Pune</td><td>7.23 CGPA</td></tr>
+      <tr><td>HSC</td><td>NES Nanded</td><td>61%</td></tr>
+      <tr><td>SSC</td><td>PNHS Nanded</td><td>89.2%</td></tr>
+    </table>
+  </div>
+</section>
+
+<section>
+  <h2>Blogs (Coming Soon)</h2>
+  <div class="card">✍️ DevOps basics • Python automation • Cloud notes</div>
+</section>
+
+<footer>
+  © 2026 Prathmesh Ambekar • Built with ❤️ & Code
+</footer>
+
+<script>
+  document.addEventListener('mousemove',e=>{
+    document.body.style.setProperty('--x',e.clientX+'px');
+    document.body.style.setProperty('--y',e.clientY+'px');
+  })
+</script>
+</body>
+</html>
