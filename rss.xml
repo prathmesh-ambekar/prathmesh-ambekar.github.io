@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+  <channel>
+    <title>Prathmesh Ambekar – Tech Blog</title>
+    <link>https://YOUR_USERNAME.github.io/</link>
+    <description>Blogs on Python, DevOps, Cloud, Embedded Systems</description>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 17 Jan 2026 10:00:00 GMT</lastBuildDate>
+
+    <item>
+      <title>Getting Started with Python Automation</title>
+      <link>https://YOUR_USERNAME.github.io/blogs/blog1.html</link>
+      <description>Beginner-friendly guide to Python automation for DevOps.</description>
+      <pubDate>Fri, 17 Jan 2026 09:00:00 GMT</pubDate>
+    </item>
+
+  </channel>
+</rss>
