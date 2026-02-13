@@ -37,26 +37,6 @@
       justify-content:center;
       align-items:center;
       text-align:center;
-      position:relative;
-      overflow:hidden;
-    }
-
-    /* ===== PROFILE IMAGE ===== */
-    .profile-pic{
-      width:160px;
-      height:160px;
-      border-radius:50%;
-      border:3px solid var(--primary);
-      object-fit:cover;
-      box-shadow:0 0 25px rgba(0,245,255,.6);
-      margin-bottom:1.5rem;
-      animation:pulse 2.5s infinite;
-      transition:.4s;
-    }
-
-    .profile-pic:hover{
-      transform:scale(1.08) rotate(2deg);
-      box-shadow:0 0 40px rgba(0,255,255,.9);
     }
 
     header h1{
@@ -68,7 +48,7 @@
     }
 
     header p{
-      max-width:700px;
+      max-width:800px;
       margin-top:1rem;
       font-size:1.1rem;
       opacity:.9;
@@ -95,7 +75,7 @@
 
     .grid{
       display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
       gap:2rem;
     }
 
@@ -105,28 +85,20 @@
       border-radius:16px;
       border:1px solid rgba(255,255,255,.05);
       transition:.4s;
-      position:relative;
     }
 
     .card:hover{
-      transform:translateY(-8px) scale(1.02);
+      transform:translateY(-8px);
       box-shadow:0 0 25px rgba(0,245,255,.3);
     }
 
-    table{
-      width:100%;
-      border-collapse:collapse;
-      margin-top:1rem;
+    ul{
+      padding-left:1.2rem;
     }
 
-    th,td{
-      padding:.8rem;
-      border-bottom:1px solid rgba(255,255,255,.1);
-      text-align:left;
-    }
-
-    th{
-      color:var(--accent);
+    li{
+      margin-bottom:.6rem;
+      opacity:.9;
     }
 
     .highlight{
@@ -142,39 +114,9 @@
       opacity:.7;
     }
 
-    /* ===== ANIMATIONS ===== */
     @keyframes glow{
       from{ text-shadow:0 0 10px rgba(0,245,255,.4); }
       to{ text-shadow:0 0 25px rgba(124,124,255,.8); }
-    }
-
-    @keyframes pulse{
-      0%{ box-shadow:0 0 15px rgba(0,245,255,.4); }
-      50%{ box-shadow:0 0 35px rgba(0,245,255,.9); }
-      100%{ box-shadow:0 0 15px rgba(0,245,255,.4); }
-    }
-
-    /* ===== FLASHLIGHT EFFECT ===== */
-    body::before{
-      content:"";
-      position:fixed;
-      inset:0;
-      pointer-events:none;
-      background:radial-gradient(circle at var(--x) var(--y),
-        rgba(0,245,255,.12),
-        transparent 40%);
-    }
-
-    .code-line{
-      margin-top:2rem;
-      font-family:monospace;
-      font-size:1rem;
-      color:#00ff9c;
-      animation:blink 1.5s steps(2,start) infinite;
-    }
-
-    @keyframes blink{
-      50%{opacity:0;}
     }
   </style>
 </head>
@@ -182,70 +124,100 @@
 <body>
 
 <header>
-  <!-- PROFILE IMAGE -->
-  <img src="assets/images/image.png" alt="Prathmesh Ambekar" class="profile-pic">
-
   <h1>Prathmesh Ambekar</h1>
-  <p>Electronics & Telecommunication Engineer | Python • DevOps • Cloud • Embedded Systems</p>
+  <p>
+    Electronics & Telecommunication Engineer | Software Engineer |
+    Web • DevOps • Cloud • Embedded Systems
+  </p>
 
-  <div class="badge">🚀 Student Portfolio</div>
-
-  <div class="code-line">
-    $ building scalable systems with code & automation...
-  </div>
+  <div class="badge">🚀 Software Engineer</div>
 </header>
 
+<!-- ABOUT -->
 <section>
   <h2>About Me</h2>
   <div class="card">
-    Highly motivated engineering student with hands-on experience in
-    <span class="highlight">Python, Cloud, DevOps, and Embedded Systems</span>.
-    I enjoy building scalable systems, automating workflows, and integrating
-    hardware with software.
+    Highly motivated engineer with experience across
+    <span class="highlight">Web Development, DevOps, Cloud, and Product Engineering</span>.
+    Passionate about building scalable software solutions, improving system performance,
+    and collaborating with global teams.
   </div>
 </section>
 
+<!-- EXPERIENCE -->
+<section>
+  <h2>Experience</h2>
+  <div class="card">
+    <h3>Software Engineer</h3>
+    <p class="highlight">T-MAT Global | Remote (United States)</p>
+    <p>Jan 2026 – Present</p>
+
+    <br>
+    <h4>Key Responsibilities</h4>
+    <ul>
+      <li>Develop and enhance web application features to improve performance and user experience</li>
+      <li>Contribute to both backend and frontend development following best coding practices</li>
+      <li>Support DevOps workflows including CI/CD pipeline configuration and automation</li>
+      <li>Assist in cloud deployments and environment setup</li>
+      <li>Participate in testing, debugging, and quality assurance processes</li>
+      <li>Contribute to product development cycles from planning to release</li>
+      <li>Collaborate with distributed teams across multiple time zones</li>
+    </ul>
+
+    <br>
+    <h4>Skills & Exposure</h4>
+    <ul>
+      <li>Web Development (Frontend & Backend)</li>
+      <li>DevOps & CI/CD</li>
+      <li>Cloud Deployment</li>
+      <li>Software Testing & QA</li>
+      <li>Agile & Product Development Practices</li>
+    </ul>
+  </div>
+</section>
+
+<!-- PROJECTS -->
 <section>
   <h2>Projects</h2>
   <div class="grid">
+
     <div class="card">
-      <h3>Cold Storage Monitoring (IoT)</h3>
-      <p>Real-time temperature & humidity monitoring with alert system.</p>
+      <h3>Cold Storage Monitoring System (IoT)</h3>
+      <ul>
+        <li>Designed a real-time temperature and humidity monitoring system</li>
+        <li>Integrated sensors with microcontrollers for continuous data collection</li>
+        <li>Implemented alert mechanisms for threshold violations</li>
+        <li>Improved monitoring accuracy and reduced spoilage risk</li>
+      </ul>
     </div>
+
     <div class="card">
-      <h3>Tomato Quality Detection</h3>
-      <p>Computer vision based defect classification using live webcam.</p>
+      <h3>Tomato Quality Detection System</h3>
+      <ul>
+        <li>Built a computer vision system for quality and defect detection</li>
+        <li>Used live webcam feed for real-time classification</li>
+        <li>Applied image processing techniques for feature extraction</li>
+        <li>Enhanced accuracy of quality assessment in agricultural produce</li>
+      </ul>
     </div>
+
     <div class="card">
       <h3>DevOps Learning Hub 🚀</h3>
-      <p>AI-powered interactive platform for learning DevOps concepts.</p>
-      <p><span class="highlight">Tech:</span> Python, Streamlit, DevOps</p>
+      <ul>
+        <li>Developed an interactive platform for learning DevOps concepts</li>
+        <li>Integrated Python and Streamlit for UI and logic</li>
+        <li>Covered CI/CD, cloud fundamentals, and automation workflows</li>
+        <li>Focused on beginner-friendly and hands-on learning experience</li>
+      </ul>
+      <p class="highlight">Tech Stack: Python, Streamlit, DevOps Tools</p>
     </div>
-  </div>
-</section>
 
-<section>
-  <h2>Education</h2>
-  <div class="card">
-    <table>
-      <tr><th>Degree</th><th>Institute</th><th>Score</th></tr>
-      <tr><td>B.Tech (ENTC)</td><td>PES MCOE Pune</td><td>7.23 CGPA</td></tr>
-      <tr><td>HSC</td><td>NES Nanded</td><td>61%</td></tr>
-      <tr><td>SSC</td><td>PNHS Nanded</td><td>89.2%</td></tr>
-    </table>
   </div>
 </section>
 
 <footer>
   © 2026 Prathmesh Ambekar • Built with ❤️ & Code
 </footer>
-
-<script>
-  document.addEventListener('mousemove', e => {
-    document.body.style.setProperty('--x', e.clientX + 'px');
-    document.body.style.setProperty('--y', e.clientY + 'px');
-  });
-</script>
 
 </body>
 </html>
