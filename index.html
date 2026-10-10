@@ -115,7 +115,7 @@
     }
 
     .hero-name {
-      font-size: clamp(3rem, 8vw, 6.5rem);
+      font-size: clamp(2.3rem, 4.6vw, 4.6rem);
       font-weight: 800;
       line-height: 1;
       background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 60%, var(--accent) 100%);
@@ -521,16 +521,299 @@
       50% { transform: translateY(-10px); }
     }
 
+    /* INTRO SPLASH */
+    #intro {
+      position: fixed;
+      inset: 0;
+      z-index: 10000;
+      background: var(--bg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 1rem;
+      transition: clip-path 1s cubic-bezier(.77,0,.18,1);
+      clip-path: inset(0 0 0 0);
+    }
+    #intro.hide { clip-path: inset(0 0 100% 0); pointer-events: none; }
+    .intro-photo-wrap {
+      position: relative;
+      width: 190px; height: 190px;
+      opacity: 0;
+      animation: introPop 1s .2s cubic-bezier(.34,1.56,.64,1) forwards;
+    }
+    .intro-photo-wrap::before {
+      content: '';
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      background: conic-gradient(from 0deg, var(--primary), var(--secondary), var(--accent), var(--primary));
+      animation: spin 3s linear infinite;
+    }
+    .intro-photo-wrap img {
+      position: relative;
+      width: 100%; height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center 22%;
+      border: 5px solid var(--bg);
+    }
+    .intro-name {
+      margin-top: 2rem;
+      font-size: clamp(2rem, 6vw, 3.6rem);
+      font-weight: 800;
+      line-height: 1.1;
+    }
+    .intro-word { display: inline-block; white-space: nowrap; }
+    .intro-name .intro-word span {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(40px) rotate(8deg);
+      animation: letterIn .6s cubic-bezier(.34,1.56,.64,1) forwards;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .intro-role {
+      margin-top: 1rem;
+      font-family: 'Space Mono', monospace;
+      font-size: clamp(.8rem, 2vw, 1rem);
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      color: var(--accent);
+      opacity: 0;
+      animation: fadeIn .8s 1.9s forwards;
+    }
+    .intro-line {
+      margin: 1rem auto 0;
+      height: 2px;
+      width: 0;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      animation: growLine .8s 2.1s ease forwards;
+    }
+    .intro-skip {
+      position: absolute;
+      bottom: 2rem;
+      font-family: 'Space Mono', monospace;
+      font-size: .65rem;
+      letter-spacing: 3px;
+      color: var(--muted);
+      opacity: 0;
+      animation: fadeIn .6s 1s forwards;
+    }
+    body.intro-active { overflow: hidden; }
+    body.intro-active #hero * { animation-play-state: paused !important; }
+
+    /* SCROLL PROGRESS */
+    #progress {
+      position: fixed;
+      top: 0; left: 0;
+      height: 3px;
+      width: 100%;
+      transform: scaleX(0);
+      transform-origin: left;
+      background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+      z-index: 101;
+    }
+
+    /* HERO PHOTO */
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      align-items: center;
+      gap: 3rem;
+      width: 100%;
+      padding: 6rem 0 3rem;
+    }
+    .hero-text { min-width: 0; }
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 440px), 1fr)); gap: 1.5rem; }
+    .hero-photo {
+      justify-self: center;
+      position: relative;
+      width: min(340px, 26vw);
+      aspect-ratio: 1;
+      opacity: 0;
+      animation: introPop 1s .4s cubic-bezier(.34,1.56,.64,1) forwards;
+    }
+    .hero-photo-float { position: relative; width: 100%; height: 100%; animation: floatY 6s ease-in-out infinite; }
+    .hero-photo .ring {
+      position: absolute;
+      inset: -8px;
+      border-radius: 50%;
+      background: conic-gradient(from 0deg, var(--primary), var(--secondary), var(--accent), var(--primary));
+      animation: spin 6s linear infinite;
+      filter: drop-shadow(0 0 25px rgba(0,229,255,.35));
+    }
+    .hero-photo .ring-dashed {
+      position: absolute;
+      inset: -28px;
+      border-radius: 50%;
+      border: 1.5px dashed rgba(0,229,255,.3);
+      animation: spin 25s linear infinite reverse;
+    }
+    .hero-photo img {
+      position: relative;
+      width: 100%; height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center 22%;
+      border: 6px solid var(--bg);
+    }
+    .orbit {
+      position: absolute;
+      inset: -28px;
+      animation: spin 10s linear infinite;
+    }
+    .orbit span {
+      position: absolute;
+      top: -6px; left: 50%;
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 15px var(--accent);
+    }
+    .orbit.o2 { animation-duration: 14s; animation-direction: reverse; }
+    .orbit.o2 span { background: var(--secondary); box-shadow: 0 0 15px var(--secondary); top: auto; bottom: -6px; }
+    .hero-role-static {
+      margin-top: .8rem;
+      font-size: clamp(1.1rem, 2.4vw, 1.6rem);
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: 1px;
+      opacity: 0;
+      animation: slideUp .6s .6s forwards;
+    }
+
+    /* CERTIFICATIONS */
+    .cert-card { display: flex; flex-direction: column; gap: 1rem; }
+    .cert-card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: -75%;
+      width: 50%; height: 100%;
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,.07), transparent);
+      transform: skewX(-20deg);
+      transition: left .8s ease;
+    }
+    .cert-card:hover::after { left: 130%; }
+    .cert-icon {
+      width: 56px; height: 56px;
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem;
+      background: linear-gradient(135deg, rgba(0,229,255,.15), rgba(139,92,246,.15));
+      border: 1px solid rgba(0,229,255,.2);
+      transition: transform .5s cubic-bezier(.34,1.56,.64,1);
+    }
+    .cert-card:hover .cert-icon { transform: rotate(-10deg) scale(1.12); }
+    .cert-title { font-size: 1.05rem; font-weight: 700; line-height: 1.35; }
+    .cert-issuer { color: var(--primary); font-size: .86rem; font-weight: 600; }
+    .cert-desc { font-size: .84rem; color: rgba(226,232,240,.65); line-height: 1.7; }
+
+    /* PROJECT FEATURES */
+    .project-badge {
+      display: inline-block;
+      font-family: 'Space Mono', monospace;
+      font-size: .66rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: rgba(0,255,179,.07);
+      border: 1px solid rgba(0,255,179,.18);
+      padding: .25rem .7rem;
+      border-radius: 20px;
+      margin-bottom: 1rem;
+    }
+    .project-feature .project-title { font-size: 1.2rem; padding-right: 3.5rem; }
+    .project-feature .exp-list li { font-size: .84rem; }
+    .project-feature .exp-list b { color: var(--text); font-weight: 700; }
+    .flow { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem; margin-top: 1.2rem; }
+    .flow span {
+      font-family: 'Space Mono', monospace;
+      font-size: .7rem;
+      padding: .35rem .65rem;
+      border-radius: 6px;
+      background: var(--surface2);
+      border: 1px solid rgba(0,229,255,.25);
+      color: var(--primary);
+      animation: flowPulse 3s ease-in-out infinite;
+    }
+    .flow span:nth-of-type(2) { animation-delay: .4s; }
+    .flow span:nth-of-type(3) { animation-delay: .8s; }
+    .flow span:nth-of-type(4) { animation-delay: 1.2s; }
+    .flow span:nth-of-type(5) { animation-delay: 1.6s; }
+    .flow i {
+      width: 18px; height: 2px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary), var(--primary));
+      background-size: 200% 100%;
+      animation: flowLine 1.2s linear infinite;
+    }
+    .freelance-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.2rem; }
+    .freelance-card:hover .cert-icon { transform: rotate(-10deg) scale(1.12); }
+    .btn-icon { display: inline-flex; align-items: center; gap: .5rem; }
+
+    /* SKILL TAG POP-IN */
+    .card.visible .skill-tag { animation: tagPop .5s cubic-bezier(.34,1.56,.64,1) both; }
+
+    /* NAV ACTIVE */
+    .nav-links a.active { color: var(--primary); }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes flowPulse {
+      0%, 70%, 100% { box-shadow: none; border-color: rgba(0,229,255,.25); }
+      20% { box-shadow: 0 0 16px rgba(0,229,255,.45); border-color: var(--primary); }
+    }
+    @keyframes flowLine { from { background-position: 200% 0; } to { background-position: 0 0; } }
+    @keyframes introPop {
+      from { opacity: 0; transform: scale(.4); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    @keyframes letterIn { to { opacity: 1; transform: translateY(0) rotate(0); } }
+    @keyframes growLine { to { width: min(260px, 60vw); } }
+    @keyframes tagPop {
+      from { opacity: 0; transform: scale(.6) translateY(10px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .hero-photo { order: -1; width: min(240px, 60vw); }
+      .hero-scroll { display: none; }
+    }
+
     @media (max-width: 640px) {
       .nav-links { display: none; }
       section { padding: 4rem 5%; }
-      #hero { padding: 0 5%; }
+      #hero { padding: 0 5% 3rem; }
       .stats-row { gap: 2rem; }
+    }
+
+    @media (hover: none) {
+      body, .btn { cursor: auto; }
+      .cursor-dot, .cursor-ring { display: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
     }
   </style>
 </head>
-<body>
+<body class="intro-active">
 
+<!-- INTRO SPLASH -->
+<div id="intro">
+  <div class="intro-photo-wrap">
+    <img src="assets/profile.jpg" alt="Prathmesh Ambekar" />
+  </div>
+  <h1 class="intro-name" id="introName">Prathmesh Ambekar</h1>
+  <p class="intro-role">Software Engineer</p>
+  <div class="intro-line"></div>
+  <span class="intro-skip">CLICK ANYWHERE TO SKIP</span>
+</div>
+
+<div id="progress"></div>
 <canvas id="bgCanvas"></canvas>
 <div class="cursor-dot" id="cursorDot"></div>
 <div class="cursor-ring" id="cursorRing"></div>
@@ -540,8 +823,10 @@
   <a href="#hero" class="nav-logo">PA/</a>
   <ul class="nav-links">
     <li><a href="#experience">Experience</a></li>
+    <li><a href="#freelance">Freelance</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#skills">Skills</a></li>
+    <li><a href="#certifications">Certifications</a></li>
     <li><a href="#education">Education</a></li>
     <li><a href="#achievements">Achievements</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -550,28 +835,35 @@
 
 <!-- HERO -->
 <section id="hero">
-  <p class="hero-tag">// AVAILABLE FOR OPPORTUNITIES</p>
+ <div class="hero-inner">
+ <div class="hero-text">
   <h1 class="hero-name" data-text="Prathmesh Ambekar">Prathmesh Ambekar</h1>
+  <p class="hero-role-static">Software Engineer</p>
   <div class="hero-typed">
     <span id="typed"></span><span class="typed-cursor">|</span>
   </div>
   <p class="hero-summary">
-    Engineering graduate with hands-on experience in building, deploying, and supporting software systems across development, cloud, and DevOps environments. Skilled in CI/CD pipelines, automation, testing, and system integration — passionate about scalable, reliable engineering solutions.
+    Software engineer who builds AI-powered, production-ready applications, taking them from idea all the way to the cloud. I work across the full stack, from React frontends and FastAPI backends to Generative AI, machine learning, and Docker and Kubernetes deployments on AWS. I care about software that is secure, well tested, and built to scale.
   </p>
   <div class="hero-btns">
     <a href="#contact" class="btn btn-primary">Get In Touch</a>
-    <a href="#experience" class="btn btn-outline">View Work</a>
+    <a href="#projects" class="btn btn-outline">View Work</a>
+    <a href="https://www.linkedin.com/in/prathmesh-ambekar-baa373393" target="_blank" rel="noopener" class="btn btn-outline btn-icon">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+      LinkedIn
+    </a>
   </div>
-  <div class="stats-row">
-    <div class="stat"><div class="stat-number" data-count="3">0</div><div class="stat-label">Internships</div></div>
-    <div class="stat"><div class="stat-number" data-count="3">0</div><div class="stat-label">Key Projects</div></div>
-    <div class="stat"><div class="stat-number" data-count="4">0</div><div class="stat-label">Leadership Roles</div></div>
-    <div class="stat"><div class="stat-number" data-count="15">0</div><div class="stat-label">Tech Tools</div></div>
+ </div>
+  <div class="hero-photo">
+    <div class="hero-photo-float">
+      <div class="ring-dashed"></div>
+      <div class="orbit"><span></span></div>
+      <div class="orbit o2"><span></span></div>
+      <div class="ring"></div>
+      <img src="assets/profile.jpg" alt="Prathmesh Ambekar" />
+    </div>
   </div>
-  <div class="hero-scroll">
-    <span class="scroll-label">SCROLL</span>
-    <div class="scroll-line"></div>
-  </div>
+ </div>
 </section>
 
 <div class="section-divider"></div>
@@ -583,36 +875,20 @@
 
   <div style="display:flex;flex-direction:column;gap:1.5rem;">
 
-    <div class="card reveal">
-      <div class="exp-header">
-        <div>
-          <div class="exp-title">Software Engineer </div>
-          <div class="exp-company">T-MAT Global — Remote (United States) (Freelancer)</div>
-        </div>
-        <span class="exp-period">Jan 2026 – Present</span>
-      </div>
-      <ul class="exp-list">
-        <li>Web application development across frontend and backend stacks</li>
-        <li>CI/CD automation and DevOps workflow support</li>
-        <li>Cloud deployment and environment configuration</li>
-        <li>Testing, debugging, and QA processes</li>
-        <li>Collaboration with global cross-functional teams</li>
-      </ul>
-    </div>
 
     <div class="grid-2">
       <div class="card reveal">
         <div class="exp-header">
           <div>
-            <div class="exp-title">Embedded Developer Intern</div>
+            <div class="exp-title">Software Developer Intern</div>
             <div class="exp-company">VBS Global Tech Solutions, Pune</div>
           </div>
           <span class="exp-period">Jan – Dec 2025</span>
         </div>
         <ul class="exp-list">
-          <li>Embedded system programming, testing & debugging</li>
-          <li>Hardware–software integration and real-time systems</li>
-          <li>Hands-on with microcontrollers, sensors, and protocols</li>
+          <li>App development — building and shipping application features end to end</li>
+          <li>Cloud architecture — designing and configuring cloud infrastructure for deployments</li>
+          <li>Backend development — APIs, databases, and server-side business logic</li>
         </ul>
       </div>
 
@@ -652,26 +928,95 @@
 
 <div class="section-divider"></div>
 
+<!-- FREELANCE -->
+<section id="freelance">
+  <p class="section-label reveal">// CLIENT WORK</p>
+  <h2 class="section-title reveal">Freelancing</h2>
+
+  <div class="grid-2">
+
+    <div class="card reveal freelance-card">
+      <div class="freelance-top">
+        <div class="cert-icon">🌐</div>
+        <span class="exp-period">Freelance</span>
+      </div>
+      <div class="project-title">Creyes Media — Company Website</div>
+      <div class="exp-company" style="margin-bottom:.8rem">Client: Creyes Media</div>
+      <p class="project-desc">Designed and developed a responsive business website for Creyes Media, covering layout, content structure, cross-device testing, and deployment.</p>
+      <div class="project-tags">
+        <span class="project-tag">Web Design</span>
+        <span class="project-tag">HTML / CSS / JS</span>
+        <span class="project-tag">Responsive</span>
+        <span class="project-tag">Deployment</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
 <!-- PROJECTS -->
 <section id="projects">
   <p class="section-label reveal">// WHAT I'VE BUILT</p>
   <h2 class="section-title reveal">Projects</h2>
 
-  <div class="grid-3">
+  <div class="skills-grid">
 
-    <div class="card reveal" style="animation: floatY 6s ease-in-out infinite;">
+    <div class="card reveal project-feature">
       <div class="project-number">01</div>
-      <div class="project-title">Live Website SEO Optimization</div>
-      <p class="project-desc">Improved SEO performance of a live production website for rural agricultural businesses. Implemented sitemap, robots.txt, on-page and technical SEO. Automated GitHub workflows for deployment.</p>
+      <span class="project-badge">Full-Stack</span>
+      <div class="project-title">Prathys Softwares — Restaurant POS &amp; Billing System</div>
+      <p class="project-desc">A full-stack point-of-sale system for small and medium restaurants: counter billing, dine-in table service, a kitchen order board, inventory and supplier management, staff accounts, and sales analysis. Owners, cashiers and kitchen staff each get their own screens, with the same permissions enforced on the server.</p>
+      <ul class="exp-list">
+        <li><b>Concurrency-safe billing:</b> one open order per table, no double payments. 12 simultaneous payments of one bill on SQL Server result in exactly one charge.</li>
+        <li><b>Secure role-based access:</b> JWT tokens invalidated on password change, rate-limited logins, bcrypt-hashed passwords.</li>
+        <li><b>Audited corrections:</b> voids, cancellations and total rebuilds record who did it and why.</li>
+        <li><b>Inventory:</b> automatic stock deduction on sale, supplier deliveries, low-stock alerts.</li>
+        <li><b>Sales analysis:</b> hourly and daily sales, payment and order-type breakdowns, top sellers.</li>
+        <li><b>Polished UI:</b> dark and light themes, printable 80 mm receipts, mobile-friendly.</li>
+        <li><b>Tested:</b> 44 automated backend tests plus Playwright browser tests.</li>
+      </ul>
       <div class="project-tags">
-        <span class="project-tag">SEO</span>
-        <span class="project-tag">GitHub Actions</span>
+        <span class="project-tag">React 18</span>
+        <span class="project-tag">Vite</span>
+        <span class="project-tag">Tailwind CSS</span>
+        <span class="project-tag">FastAPI</span>
+        <span class="project-tag">SQLAlchemy</span>
+        <span class="project-tag">SQL Server</span>
+        <span class="project-tag">JWT</span>
+        <span class="project-tag">pytest</span>
+        <span class="project-tag">Playwright</span>
+      </div>
+    </div>
+
+    <div class="card reveal project-feature">
+      <div class="project-number">02</div>
+      <span class="project-badge">DevOps · Learning Showcase</span>
+      <div class="project-title">Go Web App on AWS EKS with Kubernetes &amp; CI/CD</div>
+      <p class="project-desc">A hands-on deep dive into what happens when an app moves from local development to a cloud Kubernetes environment: containerization, Kubernetes workloads, networking, and CI/CD fundamentals.</p>
+      <ul class="exp-list">
+        <li><b>Containerization:</b> Go web app with a multi-stage Dockerfile, running on a distroless image for a smaller, more secure container.</li>
+        <li><b>Kubernetes workloads:</b> Deployment for pods, NodePort Service for external access; verified health, connectivity and rolling updates with kubectl.</li>
+        <li><b>AWS EKS:</b> deployed to an EKS cluster, verified worker nodes, opened NodePort traffic in Security Groups, and reached the app via the node IP.</li>
+        <li><b>Ingress &amp; networking:</b> designed Ingress routing and prepared the NGINX Ingress Controller via Helm.</li>
+      </ul>
+      <div class="flow">
+        <span>DNS</span><i></i><span>Load Balancer</span><i></i><span>Ingress</span><i></i><span>Service</span><i></i><span>Pods</span>
+      </div>
+      <div class="project-tags">
+        <span class="project-tag">Go</span>
+        <span class="project-tag">Docker</span>
+        <span class="project-tag">Kubernetes</span>
+        <span class="project-tag">AWS EKS</span>
+        <span class="project-tag">Helm</span>
+        <span class="project-tag">NGINX Ingress</span>
         <span class="project-tag">CI/CD</span>
       </div>
     </div>
 
-    <div class="card reveal" style="animation: floatY 7s ease-in-out infinite 1s;">
-      <div class="project-number">02</div>
+    <div class="card reveal">
+      <div class="project-number">03</div>
       <div class="project-title">Cold Storage IoT Monitor</div>
       <p class="project-desc">Designed an IoT system to monitor temperature and humidity in cold storage. Enabled real-time alerts to prevent spoilage of perishable goods using embedded sensors and cloud connectivity.</p>
       <div class="project-tags">
@@ -682,8 +1027,8 @@
       </div>
     </div>
 
-    <div class="card reveal" style="animation: floatY 6.5s ease-in-out infinite 0.5s;">
-      <div class="project-number">03</div>
+    <div class="card reveal">
+      <div class="project-number">04</div>
       <div class="project-title">Visual Inspection & Auto Testing System</div>
       <p class="project-desc">Automated testing and visual inspection system for display-based products at Keetronics. Camera-based defect detection, electrical parameter measurement, and real-time cloud monitoring.</p>
       <div class="project-tags">
@@ -704,7 +1049,65 @@
   <p class="section-label reveal">// TECHNOLOGY STACK</p>
   <h2 class="section-title reveal">Skills</h2>
 
-  <div class="grid-2">
+  <div class="skills-grid">
+
+    <div class="card reveal">
+      <div class="skill-group">
+        <div class="skill-group-title">💻 Programming</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">Java</span>
+          <span class="skill-tag">Go</span>
+          <span class="skill-tag">C / C++</span>
+          <span class="skill-tag">Embedded C</span>
+          <span class="skill-tag">SQL</span>
+          <span class="skill-tag">Shell Scripting</span>
+          <span class="skill-tag">Bash</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">🌐 Web Development</div>
+        <div class="skill-tags">
+          <span class="skill-tag">HTML5</span>
+          <span class="skill-tag">CSS3</span>
+          <span class="skill-tag">JavaScript</span>
+          <span class="skill-tag">Responsive Design</span>
+          <span class="skill-tag">REST APIs</span>
+          <span class="skill-tag">SEO</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card reveal">
+      <div class="skill-group">
+        <div class="skill-group-title">🤖 AI & Generative AI</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Generative AI</span>
+          <span class="skill-tag">Large Language Models</span>
+          <span class="skill-tag">Prompt Engineering</span>
+          <span class="skill-tag">RAG</span>
+          <span class="skill-tag">NLP</span>
+          <span class="skill-tag">Computer Vision</span>
+          <span class="skill-tag">OCI Generative AI</span>
+          <span class="skill-tag">AI Ethics</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">📊 Data Science & ML</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Machine Learning</span>
+          <span class="skill-tag">Deep Learning</span>
+          <span class="skill-tag">NumPy</span>
+          <span class="skill-tag">Pandas</span>
+          <span class="skill-tag">Scikit-learn</span>
+          <span class="skill-tag">TensorFlow</span>
+          <span class="skill-tag">Matplotlib</span>
+          <span class="skill-tag">Seaborn</span>
+          <span class="skill-tag">Data Visualization</span>
+          <span class="skill-tag">Jupyter</span>
+        </div>
+      </div>
+    </div>
 
     <div class="card reveal">
       <div class="skill-group">
@@ -713,22 +1116,14 @@
           <span class="skill-tag">AWS</span>
           <span class="skill-tag">Azure</span>
           <span class="skill-tag">GCP</span>
+          <span class="skill-tag">Oracle Cloud (OCI)</span>
           <span class="skill-tag">Docker</span>
           <span class="skill-tag">Kubernetes</span>
           <span class="skill-tag">Jenkins</span>
+          <span class="skill-tag">GitHub Actions</span>
           <span class="skill-tag">CI/CD</span>
           <span class="skill-tag">Terraform</span>
           <span class="skill-tag">Ansible</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <div class="skill-group-title">💻 Programming</div>
-        <div class="skill-tags">
-          <span class="skill-tag">Java</span>
-          <span class="skill-tag">Python</span>
-          <span class="skill-tag">Go</span>
-          <span class="skill-tag">Shell Scripting</span>
-          <span class="skill-tag">Bash</span>
         </div>
       </div>
     </div>
@@ -743,18 +1138,74 @@
           <span class="skill-tag">GitLab</span>
           <span class="skill-tag">Maven</span>
           <span class="skill-tag">Gradle</span>
+          <span class="skill-tag">VS Code</span>
         </div>
       </div>
       <div class="skill-group">
-        <div class="skill-group-title">⚙️ Embedded & AI</div>
+        <div class="skill-group-title">⚙️ Embedded & IoT</div>
         <div class="skill-tags">
           <span class="skill-tag">Microcontrollers</span>
-          <span class="skill-tag">Sensors & Protocols</span>
-          <span class="skill-tag">Gen-AI</span>
-          <span class="skill-tag">Machine Learning</span>
-          <span class="skill-tag">Deep Learning</span>
-          <span class="skill-tag">Data Science</span>
+          <span class="skill-tag">Arduino</span>
+          <span class="skill-tag">Raspberry Pi</span>
+          <span class="skill-tag">UART / I2C / SPI</span>
+          <span class="skill-tag">Sensors</span>
+          <span class="skill-tag">IoT</span>
+          <span class="skill-tag">Firmware Testing</span>
         </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <p class="section-label reveal">// CREDENTIALS</p>
+  <h2 class="section-title reveal">Certifications</h2>
+
+  <div class="grid-3">
+
+    <div class="card cert-card reveal">
+      <div class="cert-icon">🧠</div>
+      <div>
+        <div class="cert-title">IBM AI Foundations</div>
+        <div class="cert-issuer">IBM</div>
+      </div>
+      <p class="cert-desc">Core AI concepts — machine learning, deep learning, neural networks, NLP, computer vision, and responsible AI.</p>
+      <div class="project-tags">
+        <span class="project-tag">AI</span>
+        <span class="project-tag">ML</span>
+        <span class="project-tag">AI Ethics</span>
+      </div>
+    </div>
+
+    <div class="card cert-card reveal">
+      <div class="cert-icon">✨</div>
+      <div>
+        <div class="cert-title">Oracle Generative AI Fundamentals</div>
+        <div class="cert-issuer">Oracle</div>
+      </div>
+      <p class="cert-desc">Large language models, prompt engineering, fine-tuning, RAG, and building generative AI solutions on Oracle Cloud Infrastructure.</p>
+      <div class="project-tags">
+        <span class="project-tag">Gen-AI</span>
+        <span class="project-tag">LLMs</span>
+        <span class="project-tag">OCI</span>
+      </div>
+    </div>
+
+    <div class="card cert-card reveal">
+      <div class="cert-icon">📊</div>
+      <div>
+        <div class="cert-title">Data Science & Machine Learning</div>
+        <div class="cert-issuer">Completed with First Class</div>
+      </div>
+      <p class="cert-desc">Data analysis, visualization, statistics, and supervised &amp; unsupervised machine learning models with Python.</p>
+      <div class="project-tags">
+        <span class="project-tag">Python</span>
+        <span class="project-tag">Data Science</span>
+        <span class="project-tag">ML</span>
       </div>
     </div>
 
@@ -1007,7 +1458,7 @@ revealEls.forEach(r => revObs.observe(r));
 
 /* ── TYPED TEXT ── */
 const roles = [
-  'Software Engineer',
+  'Gen-AI & ML Enthusiast',
   'DevOps & Cloud Enthusiast',
   'Embedded Systems Dev',
   'Full-Stack Builder',
@@ -1026,7 +1477,55 @@ function type() {
   }
   setTimeout(type, deleting ? 45 : 85);
 }
-setTimeout(type, 1500);
+
+/* ── INTRO SPLASH ── */
+const intro = document.getElementById('intro');
+const introName = document.getElementById('introName');
+let letterIdx = 0;
+introName.innerHTML = introName.textContent.split(' ').map(word =>
+  `<span class="intro-word">${[...word].map(ch => `<span style="animation-delay:${.7 + letterIdx++ * .06}s">${ch}</span>`).join('')}</span>`
+).join(' ');
+let introDone = false;
+function endIntro() {
+  if (introDone) return;
+  introDone = true;
+  intro.classList.add('hide');
+  document.body.classList.remove('intro-active');
+  setTimeout(type, 1200);
+  setTimeout(() => intro.remove(), 1100);
+}
+intro.addEventListener('click', endIntro);
+setTimeout(endIntro, 3600);
+
+/* ── SCROLL PROGRESS + ACTIVE NAV ── */
+const progress = document.getElementById('progress');
+const navLinks = document.querySelectorAll('.nav-links a');
+const sections = [...navLinks].map(a => document.querySelector(a.getAttribute('href')));
+window.addEventListener('scroll', () => {
+  const max = document.documentElement.scrollHeight - window.innerHeight;
+  progress.style.transform = `scaleX(${max > 0 ? window.scrollY / max : 0})`;
+  let current = -1;
+  sections.forEach((s, i) => { if (s && s.getBoundingClientRect().top < window.innerHeight * .4) current = i; });
+  navLinks.forEach((a, i) => a.classList.toggle('active', i === current));
+}, { passive: true });
+
+/* ── SKILL TAG STAGGER ── */
+document.querySelectorAll('.skill-tags').forEach(group => {
+  group.querySelectorAll('.skill-tag').forEach((tag, i) => { tag.style.animationDelay = (.3 + i * .05) + 's'; });
+});
+
+/* ── 3D CARD TILT ── */
+if (window.matchMedia('(hover: hover)').matches) {
+  document.querySelectorAll('.card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const r = card.getBoundingClientRect();
+      const px = (e.clientX - r.left) / r.width - .5;
+      const py = (e.clientY - r.top) / r.height - .5;
+      card.style.transform = `perspective(900px) rotateX(${-py * 6}deg) rotateY(${px * 6}deg) translateY(-6px)`;
+    });
+    card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+  });
+}
 
 /* ── COUNTER ── */
 const counterObs = new IntersectionObserver(entries => {
