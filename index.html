@@ -888,19 +888,29 @@
       opacity: 0;
       animation: introPop .8s 1s cubic-bezier(.34,1.56,.64,1) forwards;
     }
-    .hero-badge .stat-number {
-      background: none;
-      -webkit-text-fill-color: var(--bg);
-      color: var(--bg);
-      font-family: 'Jost', sans-serif;
-      font-size: 4.6rem;
-      font-weight: 700;
+    .badge-icon { width: 46px; height: 46px; margin-bottom: .6rem; }
+    .badge-text { font-size: .95rem; font-weight: 700; line-height: 1.2; text-transform: uppercase; letter-spacing: 0; }
+    .hero-badge { padding: 52px 0 0 36px; }
+
+    /* PROJECT LINKS */
+    .project-links { display: flex; gap: .8rem; flex-wrap: wrap; margin: .2rem 0 1rem; }
+    .project-link {
+      display: inline-flex; align-items: center; gap: .4rem;
+      font-size: .8rem; font-weight: 600;
+      color: var(--primary);
+      text-decoration: none;
+      padding: .35rem .85rem;
+      border: 1px solid rgba(120,227,91,.35);
+      border-radius: 3px;
+      transition: all .3s;
     }
-    .hero-badge .stat-label { color: var(--bg); font-weight: 600; margin-top: .2rem; }
+    .project-link:hover { background: var(--primary); color: var(--bg); }
+    .status-progress { color: #f5c542; background: rgba(245,197,66,.08); border-color: rgba(245,197,66,.3); }
 
     /* ABOUT */
     .about-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 3rem; align-items: center; }
     .about-text { color: rgba(242,242,242,.72); line-height: 1.9; font-size: 1.02rem; }
+    .about-text b { color: var(--text); font-weight: 600; }
     .about-grid .stats-row { opacity: 1; animation: none; margin-top: 0; gap: 2.5rem; }
     .about-grid .stat-number { background: none; -webkit-text-fill-color: var(--primary); color: var(--primary); font-family: 'Jost', sans-serif; font-size: 3.4rem; font-weight: 700; }
 
@@ -913,8 +923,9 @@
       .hero-photo { order: -1; width: min(280px, 70vw); }
       .hero-scroll { display: none; }
       .hero-social { display: none; }
-      .hero-badge { width: 160px; height: 160px; padding: 30px 0 0 34px; right: -40px; bottom: -40px; }
-      .hero-badge .stat-number { font-size: 3rem; }
+      .hero-badge { width: 170px; height: 170px; padding: 30px 0 0 22px; right: -40px; bottom: -40px; }
+      .badge-icon { width: 30px; height: 30px; margin-bottom: .3rem; }
+      .badge-text { font-size: .72rem; }
       .about-grid { grid-template-columns: 1fr; }
       .nav-cta { display: none; }
     }
@@ -925,6 +936,7 @@
 
     @media (max-width: 640px) {
       .nav-links { display: none; }
+      .corner-blob { width: 90px; height: 90px; top: -65px; left: -65px; }
       section { padding: 4rem 5%; }
       #hero { padding: 0 5% 3rem; }
       .stats-row { gap: 2rem; }
@@ -969,7 +981,7 @@
     <li><a href="#education">Education</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <a href="#contact" class="nav-cta">Hire Me</a>
+  <a href="#contact" class="nav-cta">Invite Me</a>
 </nav>
 
 <!-- HERO -->
@@ -982,7 +994,7 @@
   <p class="hero-role-static">A Passionate <span id="typed"></span><span class="typed-cursor">|</span></p>
   <div class="hero-btns">
     <a href="#contact" class="btn btn-primary">Say Hello</a>
-    <a href="#projects" class="btn btn-outline">View Work</a>
+    <a href="blog.html" class="btn btn-outline">View Blog</a>
   </div>
  </div>
   <div class="hero-photo">
@@ -1000,8 +1012,8 @@
   <li><a href="mailto:prambekar07@gmail.com" aria-label="Email"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6l-10 7L2 6"/></svg></a></li>
  </ul>
  <div class="hero-badge">
-  <span class="stat-number" data-count="3">0</span>
-  <span class="stat-label">Internships</span>
+  <svg class="badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+  <span class="badge-text">Troubleshoot<br>Expert</span>
  </div>
 </section>
 
@@ -1012,13 +1024,19 @@
   <p class="section-label reveal">About Me</p>
   <h2 class="section-title reveal">Who I Am</h2>
   <div class="about-grid">
-    <p class="about-text reveal">
-      Software engineer who builds AI-powered, production-ready applications, taking them from idea all the way to the cloud. I work across the full stack, from React frontends and FastAPI backends to Generative AI, machine learning, and Docker and Kubernetes deployments on AWS. I care about software that is secure, well tested, and built to scale.
-    </p>
+    <div class="about-text reveal">
+      <p>
+        I am a <b>backend-focused software engineer</b> who architects and ships <b>AI-driven, production-grade systems</b> end to end. My core is server-side engineering: designing secure, versioned <b>REST APIs</b>, layered routes–controllers–models architectures, JWT-based authentication, rate limiting and centralised error handling, all backed by well-modelled data layers on <b>SQL Server, PostgreSQL and MongoDB</b> with indexing, transactions and concurrency-safe writes.
+      </p>
+      <p style="margin-top:1rem">
+        On top of that foundation I engineer intelligence: <b>Generative AI</b>, <b>Large Language Models (LLMs)</b>, prompt engineering, <b>Retrieval-Augmented Generation (RAG)</b> and <b>machine learning</b> pipelines with Python, Scikit-learn and TensorFlow. I take every product from requirement brief to the cloud, with React and Next.js frontends, Node.js, Express and FastAPI services, Docker and Kubernetes on AWS, and automated CI/CD. Everything I build is secure by design, rigorously tested and engineered to scale.
+      </p>
+    </div>
     <div class="stats-row reveal">
+      <div class="stat"><div class="stat-number" data-count="1">0</div><div class="stat-label">IoT App Developed</div></div>
+      <div class="stat"><div class="stat-number" data-count="3">0</div><div class="stat-label">Websites Deployed</div></div>
+      <div class="stat"><div class="stat-number" data-count="1">0</div><div class="stat-label">Live Software · TaskFlow</div></div>
       <div class="stat"><div class="stat-number" data-count="3">0</div><div class="stat-label">Internships</div></div>
-      <div class="stat"><div class="stat-number" data-count="4">0</div><div class="stat-label">Projects</div></div>
-      <div class="stat"><div class="stat-number" data-count="3">0</div><div class="stat-label">Certifications</div></div>
     </div>
   </div>
 </section>
@@ -1108,6 +1126,37 @@
       </div>
     </div>
 
+    <div class="card reveal freelance-card project-feature">
+      <div class="freelance-top">
+        <div class="cert-icon">💎</div>
+        <span class="exp-period status-progress">In Progress</span>
+      </div>
+      <div class="project-title">SILVO PALACE — Premium Jewellery eCommerce Platform</div>
+      <div class="exp-company" style="margin-bottom:.8rem">Client: SILVO PALACE (925 Sterling Silver)</div>
+      <p class="project-desc">A luxury, animated online store built from the brand's requirement brief as a working end-to-end store, not mockups. All 23 pages from the brief are built, covering the complete purchase flow plus an admin panel. Complete storefront and admin; payment and shipping integrations ready to connect.</p>
+      <ul class="exp-list">
+        <li><b>Full shopping journey:</b> category → product → cart → coupon → 4-step checkout → confirmation → order tracking.</li>
+        <li><b>Product experience:</b> zoom gallery, drag-to-rotate 360° view, pincode delivery check.</li>
+        <li><b>Admin panel:</b> sales dashboard with charts, product, order, customer, coupon and review management.</li>
+        <li><b>One commerce layer:</b> runs on a local catalog today and switches to <b>Shopify</b> through environment variables.</li>
+        <li><b>Prepared integrations:</b> Razorpay / Cashfree, Shiprocket, GA4 + Meta Pixel, Cloudinary behind typed interfaces.</li>
+        <li><b>SEO:</b> per-page metadata and structured data for products and the organisation.</li>
+      </ul>
+      <div class="project-tags">
+        <span class="project-tag">Next.js 16</span>
+        <span class="project-tag">React 19</span>
+        <span class="project-tag">TypeScript</span>
+        <span class="project-tag">Tailwind CSS 4</span>
+        <span class="project-tag">Prisma</span>
+        <span class="project-tag">PostgreSQL</span>
+        <span class="project-tag">NextAuth</span>
+        <span class="project-tag">Zustand</span>
+        <span class="project-tag">Framer Motion</span>
+        <span class="project-tag">GSAP</span>
+        <span class="project-tag">Shopify</span>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -1122,6 +1171,36 @@
 
     <div class="card reveal project-feature">
       <div class="project-number">01</div>
+      <span class="project-badge">MERN · Live</span>
+      <div class="project-title">TaskFlow — Task, Habit &amp; Productivity Tracker</div>
+      <div class="project-links">
+        <a href="https://taskflowprathya.netlify.app" target="_blank" rel="noopener" class="project-link">↗ Live Demo</a>
+        <a href="https://github.com/prathmesh-ambekar/TaskFlow_The_Mern_Stack" target="_blank" rel="noopener" class="project-link">⌥ Source Code</a>
+      </div>
+      <p class="project-desc">A full-stack MERN app, built and deployed, for planning daily tasks, tracking repeating habits and analysing monthly productivity.</p>
+      <ul class="exp-list">
+        <li><b>REST API:</b> 14 endpoints across auth, tasks, habits and analytics in a routes–controllers–models architecture, with centralized error handling returning one consistent JSON error format.</li>
+        <li><b>Security:</b> JWT authentication, bcrypt password hashing, protected routes, per-user data isolation (every query filtered by the verified user ID) and rate-limited login and registration.</li>
+        <li><b>Daily-habit engine:</b> creates each day's tasks automatically using idempotent MongoDB bulk upserts, with a unique compound index to prevent duplicates.</li>
+        <li><b>Analytics:</b> monthly completion rate, current and best streaks, perfect days, calendar heatmap, per-habit success rates and most-missed tasks.</li>
+        <li><b>UI:</b> responsive React interface with dark mode, animated progress ring, toast notifications and reduced-motion support.</li>
+        <li><b>Deployment:</b> frontend on Netlify, backend on Render, database on MongoDB Atlas, auto-deployed on every push to GitHub; proxy trust, CORS and SPA routing configured for production.</li>
+      </ul>
+      <div class="project-tags">
+        <span class="project-tag">MongoDB</span>
+        <span class="project-tag">Express.js</span>
+        <span class="project-tag">React</span>
+        <span class="project-tag">Node.js</span>
+        <span class="project-tag">JWT</span>
+        <span class="project-tag">bcrypt</span>
+        <span class="project-tag">MongoDB Atlas</span>
+        <span class="project-tag">Netlify</span>
+        <span class="project-tag">Render</span>
+      </div>
+    </div>
+
+    <div class="card reveal project-feature">
+      <div class="project-number">02</div>
       <span class="project-badge">Full-Stack</span>
       <div class="project-title">Prathys Softwares — Restaurant POS &amp; Billing System</div>
       <p class="project-desc">A full-stack point-of-sale system for small and medium restaurants: counter billing, dine-in table service, a kitchen order board, inventory and supplier management, staff accounts, and sales analysis. Owners, cashiers and kitchen staff each get their own screens, with the same permissions enforced on the server.</p>
@@ -1148,7 +1227,7 @@
     </div>
 
     <div class="card reveal project-feature">
-      <div class="project-number">02</div>
+      <div class="project-number">03</div>
       <span class="project-badge">DevOps · Learning Showcase</span>
       <div class="project-title">Go Web App on AWS EKS with Kubernetes &amp; CI/CD</div>
       <p class="project-desc">A hands-on deep dive into what happens when an app moves from local development to a cloud Kubernetes environment: containerization, Kubernetes workloads, networking, and CI/CD fundamentals.</p>
@@ -1173,7 +1252,7 @@
     </div>
 
     <div class="card reveal">
-      <div class="project-number">03</div>
+      <div class="project-number">04</div>
       <div class="project-title">Cold Storage IoT Monitor</div>
       <p class="project-desc">Designed an IoT system to monitor temperature and humidity in cold storage. Enabled real-time alerts to prevent spoilage of perishable goods using embedded sensors and cloud connectivity.</p>
       <div class="project-tags">
@@ -1185,7 +1264,7 @@
     </div>
 
     <div class="card reveal">
-      <div class="project-number">04</div>
+      <div class="project-number">05</div>
       <div class="project-title">Visual Inspection & Auto Testing System</div>
       <p class="project-desc">Automated testing and visual inspection system for display-based products at Keetronics. Camera-based defect detection, electrical parameter measurement, and real-time cloud monitoring.</p>
       <div class="project-tags">
@@ -1223,14 +1302,55 @@
         </div>
       </div>
       <div class="skill-group">
-        <div class="skill-group-title">🌐 Web Development</div>
+        <div class="skill-group-title">🌐 Frontend</div>
         <div class="skill-tags">
+          <span class="skill-tag">React 18 / 19</span>
+          <span class="skill-tag">Next.js</span>
+          <span class="skill-tag">TypeScript</span>
+          <span class="skill-tag">JavaScript</span>
           <span class="skill-tag">HTML5</span>
           <span class="skill-tag">CSS3</span>
-          <span class="skill-tag">JavaScript</span>
+          <span class="skill-tag">Tailwind CSS</span>
+          <span class="skill-tag">Vite</span>
+          <span class="skill-tag">Framer Motion</span>
+          <span class="skill-tag">GSAP</span>
+          <span class="skill-tag">Zustand</span>
+          <span class="skill-tag">Zod</span>
+          <span class="skill-tag">Recharts</span>
           <span class="skill-tag">Responsive Design</span>
-          <span class="skill-tag">REST APIs</span>
           <span class="skill-tag">SEO</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card reveal">
+      <div class="skill-group">
+        <div class="skill-group-title">🛠️ Backend &amp; APIs</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Node.js</span>
+          <span class="skill-tag">Express.js</span>
+          <span class="skill-tag">FastAPI</span>
+          <span class="skill-tag">REST API Design</span>
+          <span class="skill-tag">JWT Auth</span>
+          <span class="skill-tag">NextAuth</span>
+          <span class="skill-tag">bcrypt</span>
+          <span class="skill-tag">Rate Limiting</span>
+          <span class="skill-tag">Role-Based Access</span>
+          <span class="skill-tag">MERN Stack</span>
+          <span class="skill-tag">Shopify Storefront</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">🗄️ Databases &amp; ORM</div>
+        <div class="skill-tags">
+          <span class="skill-tag">SQL</span>
+          <span class="skill-tag">SQL Server</span>
+          <span class="skill-tag">PostgreSQL</span>
+          <span class="skill-tag">MongoDB</span>
+          <span class="skill-tag">MongoDB Atlas</span>
+          <span class="skill-tag">Prisma ORM</span>
+          <span class="skill-tag">SQLAlchemy</span>
+          <span class="skill-tag">Indexing &amp; Transactions</span>
         </div>
       </div>
     </div>
@@ -1281,6 +1401,10 @@
           <span class="skill-tag">CI/CD</span>
           <span class="skill-tag">Terraform</span>
           <span class="skill-tag">Ansible</span>
+          <span class="skill-tag">Netlify</span>
+          <span class="skill-tag">Render</span>
+          <span class="skill-tag">Helm</span>
+          <span class="skill-tag">NGINX Ingress</span>
         </div>
       </div>
     </div>
@@ -1296,6 +1420,8 @@
           <span class="skill-tag">Maven</span>
           <span class="skill-tag">Gradle</span>
           <span class="skill-tag">VS Code</span>
+          <span class="skill-tag">pytest</span>
+          <span class="skill-tag">Playwright</span>
         </div>
       </div>
       <div class="skill-group">
@@ -1417,6 +1543,16 @@
   <h2 class="section-title reveal">Achievements & Leadership</h2>
 
   <div class="grid-3">
+
+    <div class="card reveal">
+      <div class="achievement-card">
+        <div class="achievement-icon">🚀</div>
+        <div>
+          <div class="exp-title" style="font-size:.95rem;margin-bottom:.3rem">mPulse — Tech Event Head</div>
+          <p style="font-size:.83rem;color:var(--muted);">Headed mPulse, the college technical event, leading the organising team and driving the technical programme with strong leadership and hands-on tech expertise</p>
+        </div>
+      </div>
+    </div>
 
     <div class="card reveal">
       <div class="achievement-card">
